@@ -95,8 +95,8 @@ List<Project>viewProjects=(List<Project>)request.getAttribute("listOfProjects");
 					<td><%= project.getDuration() %></td>
 
 					<td><a
-						href="<%= application.getContextPath() %>/project/delete/<%= project.getProjectId() %>">Delete</a>
-						<a
+						href="javascript:void(0);" onclick="confirmDeleteProject('<%= project.getProjectId() %>')">Delete</a></td>
+						<td><a
 						href="<%= application.getContextPath() %>/openUpdateProjectPage/<%= project.getProjectId()%>">Update</a>
 
 					</td>
@@ -106,5 +106,17 @@ List<Project>viewProjects=(List<Project>)request.getAttribute("listOfProjects");
 			</table>
 		</div>
 	</header>
+	
+	<script>
+function confirmDeleteProject(projectId) {
+    
+        var confirmDelete = confirm("Are you sure you want to delete this Project?");
+        if (confirmDelete) {
+            window.location.href = "<%= application.getContextPath() %>/project/delete/"+projectId;
+        }
+    }
+
+</script>
+	
 </body>
 </html>

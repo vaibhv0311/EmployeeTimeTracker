@@ -16,7 +16,6 @@ public class Task {
 
 	public Task() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Task(int taskId, String username, String taskName, String desc, LocalDate date, LocalTime startTime,
@@ -31,12 +30,6 @@ public class Task {
 		this.endTime = endTime;
 		this.status = status;
 		this.duration = duration;
-	}
-
-	@Override
-	public String toString() {
-		return "Task [ taskId=" + taskId + "username=" + username + ", taskName=" + taskName + ", desc=" + desc
-				+ ", date=" + date + ", startTime=" + startTime + ", endTime=" + endTime + ", status=" + status + "]";
 	}
 
 	public int getTaskId() {
@@ -111,4 +104,9 @@ public class Task {
 		this.duration = duration;
 	}
 
+	@Override
+	public String toString() {
+		return "Task [ taskId=" + taskId + "username=" + username + ", taskName=" + taskName + ", desc=" + desc
+				+ ", date=" + date + ", startTime=" + startTime + ", endTime=" + endTime + ", status=" + status + "]";
+	}
 }

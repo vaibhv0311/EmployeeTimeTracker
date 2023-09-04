@@ -135,14 +135,24 @@ nav a:hover {
 		</form>
 	</div>
 
-	<p>
+	<span id = "message">
 		<%
 		String message = (String) request.getAttribute("message");
 		if (message != null) {
 			out.print(message);
 		}
 		%>
-
-	</p>
+	</span>
+	
+	<script>
+	function hideMessage(){
+		var messageElement = document.getElementById("message");
+		if(messageElement){
+			messageElement.style.display="none";
+		}
+	}
+	setTimeout(hideMessage,5000);
+	</script>
+	
 </body>
 </html>

@@ -6,9 +6,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,21 +35,20 @@ public class LeadFormController {
 
 	@RequestMapping("/addassociateform")
 	public String gotoTraineeForm() {
-		System.out.println("Going to the trainee form");
 		return "addassociate";
 
 	}
 
 	@RequestMapping("/addprojectform")
 	public String gotoProjectForm() {
-		System.out.println("Going to the project form");
+		
 		return "addproject";
 	}
 
 	@GetMapping("/leadlogout")
 	public String processLogout(HttpSession session, Model attr) {
 
-		System.out.println(session.getAttribute("employeeRegistered"));
+		session.getAttribute("employeeRegistered");
 		session.invalidate();
 		attr.addAttribute("result", "Logged out successfully");
 		return "02_leadlogin";
@@ -71,12 +72,16 @@ public class LeadFormController {
 				employee.setRole(role);
 				employee.setProjectTitle(projectTitle);
 				employee.setDescription(description);
-				System.out.println(employee.toString());
 				int result = employeeDao.insertEmployee(employee);
-				System.out.println("Result " + result);
+				if(result>0) {
 				model.addAttribute("success", "Employee Added Successfully");
 				return "04_leadview";
 			} else {
+				model.addAttribute("success", "Employee Addition failed");
+				return "04_leadview";
+				}
+			}
+				else {
 				model.addAttribute("error", "Please check the password!");
 				return "04_leadview";
 			}
@@ -100,7 +105,9 @@ public class LeadFormController {
 			project.setDuration(duration);
 			System.out.println(project);
 			int result = projectDao.insertProject(project);
-			System.out.println("Result: " + result);
+			if(result>0) {
+				
+			}
 			return "04_leadview";
 		} catch (ForeignKeyException fke) {
 			model.addAttribute("error", "Please check the username");
@@ -165,7 +172,7 @@ public class LeadFormController {
 				modelAndView.setViewName("associate_update");
 				return modelAndView;
 			}
-		} catch (DataAccessException de) {
+		} catch (ForeignKeyException de) {
 
 			de.printStackTrace();
 			modelAndView.addObject("message", "Employee couldn't be updated");
@@ -189,19 +196,20 @@ public class LeadFormController {
 				redirectAttributes.addFlashAttribute("message", "Employee record cannot be deleted");
 			}
 			return "redirect:/viewAssociateTable";
-		} catch (ForeignKeyException fke) {
+		} catch (DataIntegrityViolationException dke) {
 
-			fke.printStackTrace();
+			dke.printStackTrace();
 			redirectAttributes.addFlashAttribute("message", "The employee has project and task assignments!");
 			return "redirect:/viewAssociateTable";
 		}
 	}
 
 	@RequestMapping("/openUpdateProjectPage/{projectId}")
-	public String openUpdateProjectPage(@PathVariable("projectId") int projectId, Model model) {
+	public String openUpdateProjectPage(@PathVariable("projectId") int projectId, Model model,
+			@ModelAttribute("message") String message) {
 		Project projectToUpdate = projectDao.getSingleProject(projectId);
+		model.addAttribute("message");
 		model.addAttribute("projectToUpdate", projectToUpdate);
-		System.out.println(projectToUpdate);
 
 		return "project_update";
 	}
@@ -229,11 +237,11 @@ public class LeadFormController {
 				modelAndView.addObject("message", "Project couldn't be updated");
 				modelAndView.setViewName("project_update");
 			}
-		} catch (ForeignKeyException fke) {
+		} catch (DataIntegrityViolationException fke) {
 
 			fke.printStackTrace();
-			modelAndView.addObject("message", "The associate doesn't exist!");
-			modelAndView.setViewName("project_update");
+			redirectAttributes.addFlashAttribute("message", "The associate doesn't exist!");
+			modelAndView.setViewName("redirect:/openUpdateProjectPage/{projectId}");
 		}
 
 		return modelAndView;

@@ -13,7 +13,6 @@ public class Employee {
 
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Employee(int empId, String name, String id, String userName, String password, String leadId, String role,

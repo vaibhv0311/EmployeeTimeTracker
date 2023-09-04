@@ -67,6 +67,10 @@ public class AssociateController {
 			model.addAttribute("result", "Cannot find credentials! Contact Team Leader");
 			return "03_associatelogin";
 
+		} catch (NullPointerException npe) {
+			npe.getStackTrace();
+			model.addAttribute("result", "Session timed out, Please sign in again!");
+			return "03_associatelogin";
 		}
 
 	}
@@ -74,7 +78,7 @@ public class AssociateController {
 	@GetMapping("/logout")
 	public String processLogout(HttpSession session, Model attr) {
 
-		System.out.println(session.getAttribute("employeeRegistered"));
+		session.getAttribute("employeeRegistered");
 		session.invalidate();
 		attr.addAttribute("result", "Logged out successfully");
 		return "03_associatelogin";
@@ -111,7 +115,7 @@ public class AssociateController {
 
 			}
 		} catch (DataAccessException de) {
-			// TODO Auto-generated catch block
+
 			model.addAttribute("addMessage", "Data addition failed, Please check the values");
 			de.printStackTrace();
 			return "051_edittasks";
@@ -143,7 +147,6 @@ public class AssociateController {
 			model.addAttribute("taskDurationsJson", taskDurationsJson);
 
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "taskview";
@@ -153,7 +156,7 @@ public class AssociateController {
 	public String openUpdateTaskPage(@PathVariable("taskId") int taskId, Model model) {
 		Task taskToUpdate = taskDao.getTaskById(taskId);
 		model.addAttribute("taskToUpdate", taskToUpdate);
-		System.out.println(taskToUpdate);
+
 		return "taskupdate";
 	}
 
@@ -188,7 +191,7 @@ public class AssociateController {
 				return modelAndView;
 			}
 		} catch (ForeignKeyException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("message", "Task couldn't be updated");
 			modelAndView.setViewName("taskupdate");
@@ -211,11 +214,41 @@ public class AssociateController {
 			}
 			return "redirect:/tasktable";
 		} catch (DataAccessException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("message", "Task Deletion failed");
 			return "redirect:/tasktable";
 		}
+	}
+	
+	
+	@RequestMapping("/showTasks/{username}")
+	public String viewAssociateTask(Model model, @ModelAttribute("message") String message) {
+
+		List<Task> getAllTasks = taskDao.getAllTasks(viewUserName);
+
+		model.addAttribute("getAllTasks", getAllTasks);
+		model.addAttribute("message", message);
+		List<Task> tasks = taskDao.getAllTasks(viewUserName);
+
+		List<Integer> taskDuration = new ArrayList<Integer>();
+		for (Task task : tasks) {
+			LocalTime startTime = task.getStartTime();
+			LocalTime endTime = task.getEndTime();
+			Duration duration = Duration.between(startTime, endTime);
+			long durationMinutes = duration.toMinutes();
+			taskDuration.add((int) durationMinutes);
+		}
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			String taskDurationsJson = objectMapper.writeValueAsString(taskDuration);
+
+			model.addAttribute("taskDurationsJson", taskDurationsJson);
+
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "taskview";
 	}
 
 }

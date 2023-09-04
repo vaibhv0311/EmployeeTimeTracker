@@ -9,152 +9,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon"
-	href="https://cdn-icons-png.flaticon.com/512/3063/3063792.png">
-
+<link rel="stylesheet" href="<c:url value="/resources/css/edittaskstyle.css" />">
 <title>Task Manager</title>
 <style>
 @import
 	url('https://fonts.googleapis.com/css2?family=Arvo&family=Bungee+Spice&family=Fira+Sans:ital@1&family=Imperial+Script&family=Ubuntu:wght@500&display=swap')
 	;
-
-body {
-	font-family: Arial, sans-serif;
-	background-image: url("download.jpg");
-	background-size: cover;
-	margin: 0;
-	padding: 0;
-}
-
-.container {
-	/* max-width: 800px; */
-	width: 75%;
-	margin: 0 auto;
-	padding: 20px;
-	padding-right: 35px;
-	margin-top: 10px;
-	margin-bottom: 20px;
-	background-color: rgba(255, 255, 255);
-	border-radius: 5px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* for tranparency */
-}
-
-h1, h2 {
-	text-align: center;
-	margin: 0 0 20px;
-	color: white; /* Heading color */
-	font-family: "Bungee Spice", cursive;
-}
-
-.add-project-form {
-	margin-bottom: 20px;
-}
-
-/* .projects-list{
-  margin: 0 auto;
-    padding: 20px;
-    margin-top: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
- */
-.projects-list table {
-	width: 85%;
-	margin: 0 auto;
-	border-collapse: collapse;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.projects-list th, .projects-list td {
-	border: 3px solid #ddd;
-	padding: 8px;
-	text-align: center;
-}
-
-.projects-list th {
-	background-color: #f2f2f2;
-}
-
-.projects-list .no-projects-message {
-	text-align: center;
-	font-style: italic;
-	font-weight: bolder;
-	font-size: x-large;
-	font-family: 'Bungee Spice', cursive;;
-}
-
-.projects-list button {
-	background-color: #ff6347;
-	color: #fff;
-	border: none;
-	padding: 5px 10px;
-	cursor: pointer;
-	font-size: 14px;
-	border-radius: 4px;
-}
-
-.projects-list button.edit {
-	background-color: #3498db;
-}
-
-.projects-list button:hover {
-	background-color: #d9534f;
-}
-
-/* Improved form styling */
-.add-project-form input[type="text"], .add-project-form input[type="date"],
-	.add-project-form input[type="number"], .add-project-form select {
-	width: 100%;
-	padding: 8px;
-	margin-bottom: 10px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	font-size: 14px;
-}
-
-.add-project-form select {
-	cursor: pointer;
-}
-
-.add-project-form button {
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	padding: 8px 16px;
-	cursor: pointer;
-	font-size: 16px;
-	border-radius: 4px;
-	transition: background-color 0.3s;
-}
-
-.add-project-form button:hover {
-	background-color: #0056b3;
-}
-
-/* Improved project item styling */
-.projects-list .project-item {
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	margin-bottom: 10px;
-	padding: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	transition: box-shadow 0.3s;
-}
-
-.projects-list .project-item:hover {
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.projects-list .project-item button {
-	margin-left: 10px;
-}
-
-/* ... (other styles) */
 </style>
 
 <link rel="stylesheet"
@@ -178,7 +38,7 @@ h1, h2 {
 		</h4>
 	</div>
 	<h2>Add Your Task</h2>
-
+	<div class = "contaner">
 	<div class="add-project-form">
 		<form action="addtask" method="post">
 			<label for="name">Username:</label> <input type="text"
@@ -205,12 +65,15 @@ h1, h2 {
 			</select><br>
 			<button type="submit">Add Task</button>
 			<button type="reset">Clear Form</button>
+			<button type="button" onclick="tasktable">View Tasks</button>
 		</form>
-	</div>
-	<div class="updateinfo panelbutton">
-		<a href="tasktable" class="button" style="text-decoration: none;">
-			View Tasks</a>
-	</div>
+		<br>
+		
+		<button><a href="tasktable" class="button" style="text-decoration: none;">
+			View Tasks</a></button>
+	</div></div>
+		
+	
 	<%
           String message=(String)request.getAttribute("addMessage");
           if(message!=null){

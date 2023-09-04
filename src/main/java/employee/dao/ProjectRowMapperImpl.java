@@ -11,7 +11,6 @@ public class ProjectRowMapperImpl implements RowMapper<Project> {
 
 	@Override
 	public Project mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
 		Project project = new Project();
 		project.setProjectId(rs.getInt("projectId"));
 		project.setProjectName(rs.getString("projectName"));

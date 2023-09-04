@@ -26,7 +26,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public int insertEmployee(Employee employee) throws DataAccessException {
 		String insertQuery = "INSERT INTO EMPLOYEE(empName,email,empUserName,password,"
 				+ "empManager,empRole,project,projectDesc)" + "VALUES(?,?,?,?,?,?,?,?)";
-		System.out.println("data entered");
+
 		return this.jdbctemplate.update(insertQuery, employee.getName(), employee.getId(), employee.getUserName(),
 				employee.getPassword(), employee.getLeadId(), employee.getRole(), employee.getProjectTitle(),
 				employee.getDescription());
@@ -39,17 +39,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 		if (username != null && !username.isEmpty()) {
 			if (password != null && !password.isEmpty()) {
-//			System.out.println(employee);
+
 				employee = jdbctemplate.queryForObject(checkQuery, new RowMapperImpl(), username, password);
 			}
 		}
-		System.out.println(employee);
 		return employee;
 	}
 
 	@Override
 	public List<Employee> showData() {
-		// TODO Auto-generated method stub
+
 		String getAllData = "SELECT * FROM employee";
 
 		return this.jdbctemplate.query(getAllData, new RowMapperImpl());
@@ -57,7 +56,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public int updateEmployee(Employee employee) throws ForeignKeyException {
-		// TODO Auto-generated method stub
+
 		String updateQuery = "UPDATE employee SET empName=?,email=?,password=?,"
 				+ "empManager=?,empRole=?,project=?,projectDesc=? WHERE empId=?";
 

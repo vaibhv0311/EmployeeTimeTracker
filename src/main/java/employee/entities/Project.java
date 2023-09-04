@@ -9,7 +9,6 @@ public class Project {
 
 	public Project() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Project(int projectId, String projectName, String projectDesc, String leadName, int duration) {

@@ -8,6 +8,7 @@
 <meta charset="ISO-8859-1">
 <link rel="icon"
 	href="https://cdn-icons-png.flaticon.com/512/3063/3063792.png">
+<link rel="stylesheet" href="<c:url value="/resources/css/edittaskstyle.css"/>">
 <title>View Tasks</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
@@ -141,7 +142,7 @@ h1, h2 {
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody id="projects-table-body">
+			<tbody id="projects-list body">
 				<tr>
 
 					<%
@@ -160,23 +161,22 @@ h1, h2 {
 					<td><%=task.getEndTime()%></td>
 					<td><%=task.getStatus()%></td>
 					<td><a
-						href="<%=application.getContextPath()%>/task/delete/<%=task.getTaskId()%>">Delete</a>
-						<a
+						href="<%=application.getContextPath()%>/task/delete/<%=task.getTaskId()%>">Delete</a></td>
+					<td><a
 						href="<%=application.getContextPath()%>/openUpdateTaskPage/<%=task.getTaskId()%>">Update</a>
 					</td>
 				</tr>
+				
 				<%
 				serialNo++;
 				}
 				}
 				if (viewTasks.isEmpty()) {
 				%>
-				<td colspan="7" class="no-projects-message">
+				<td colspan="10" class="no-projects-message">
 					<%
 					out.print("Have a cup of coffee and enjoy no projects for you right now.");
-					%>
-
-					<i class="fa fa-coffee" style="font-size: 36px;"></i>
+					%> <i class="fa fa-coffee" style="font-size: 36px;"></i>
 				</td>
 				<%
 				}

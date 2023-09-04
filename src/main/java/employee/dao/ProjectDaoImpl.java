@@ -23,7 +23,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
 	public int insertProject(Project project) throws DataAccessException {
-		// TODO Auto-generated method stub
+
 		String insertQuery = "INSERT INTO projects(projectName," + "projectDesc,leadName,totalWeeks)"
 				+ "VALUES(?,?,?,?)";
 
@@ -33,7 +33,6 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
 	public List<Project> showProject() {
-		// TODO Auto-generated method stub
 		String getAllData = "SELECT * FROM projects";
 		return this.jdbcTemplate.query(getAllData, new ProjectRowMapperImpl());
 	}

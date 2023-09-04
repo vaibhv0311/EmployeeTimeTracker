@@ -35,7 +35,7 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public int updateTask(Task task) throws DataAccessException {
-		// TODO Auto-generated method stub
+
 		String updateQuery = "UPDATE tasks set taskName = ?,taskDescription=?,startTime=?,endTIme=?,status=?,date=? WHERE tid=?";
 		return this.jdbcTemplate.update(updateQuery, task.getTaskName(), task.getDesc(), task.getStartTime(),
 				task.getEndTime(), task.getStatus(), task.getDate(), task.getTaskId());
@@ -44,11 +44,6 @@ public class TaskDaoImpl implements TaskDao {
 	@Override
 	public List<Task> getAllTasks(String username) throws DataAccessException {
 
-		// TODO Auto-generated method stub
-//		java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
-
-		// Get LocalDate from SQL date
-//		LocalDate localDate = sqlDate.toLocalDate();
 		String getTaskQuery = "SELECT * FROM tasks WHERE empUserName=?";
 		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(getTaskQuery, username);
 		List<Task> taskList = new ArrayList<>();
@@ -68,11 +63,8 @@ public class TaskDaoImpl implements TaskDao {
 			java.sql.Time sqlTime2 = (java.sql.Time) row.get("endTime");
 			LocalTime localTime2 = sqlTime2.toLocalTime();
 			task.setEndTime(localTime2);
-//			task.setStartTime((LocalTime)row.get("startTime"));
-//			task.setEndTime((LocalTime)row.get("endTime"));
 			task.setStatus((String) row.get("status"));
 			taskList.add(task);
-			System.out.println("task: " + task);
 		}
 
 		return taskList;
@@ -80,7 +72,6 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public Task getTaskById(int taskid) {
-		// TODO Auto-generated method stub
 		String getSingleTask = "SELECT * FROM tasks WHERE tid=?";
 		return this.jdbcTemplate.queryForObject(getSingleTask, new TaskRowMapperImpl(), taskid);
 
@@ -88,7 +79,6 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public int deleteTask(int taskid) throws DataAccessException {
-		// TODO Auto-generated method stub
 		String deleteQuery = "DELETE FROM tasks WHERE tid=?";
 		return this.jdbcTemplate.update(deleteQuery, taskid);
 	}

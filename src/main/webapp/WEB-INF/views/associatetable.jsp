@@ -121,15 +121,16 @@ nav, main, footer {
 					<th>Lead Contact</th>
 					<th>Project Title</th>
 					<th>Description</th>
-					<th>Actions
-					<th>
+					<th>Actions</th>
+					<th></th>
+					<th>Tasks</th>
 				</tr>
 				<%
-				int serialNo = 0;
+				int serialNo = 1;
 				for (Employee employee : listOfEmployees) {
 				%>
 				<tr>
-					<td><%=employee.getEmpId()%></td>
+					<td><%=serialNo%></td>
 					<td><%=employee.getName()%></td>
 					<td><%=employee.getId()%></td>
 					<td><%=employee.getUserName()%></td>
@@ -137,16 +138,16 @@ nav, main, footer {
 					<td><%=employee.getLeadId()%></td>
 					<td><%=employee.getProjectTitle()%></td>
 					<td><%=employee.getDescription()%></td>
-					<td><a
-						href="<%=application.getContextPath()%>/associate/delete/<%=employee.getEmpId()%>">Delete</a>
-						<a
-						href="<%=application.getContextPath()%>/openUpdateEmployeePage/<%=employee.getEmpId()%>">Update</a>
+					<td>
+					<a href="javascript:void(0);" onclick="confirmDeleteEmployee('<%= employee.getEmpId() %>')">Delete</a></td>
+						<td><a
+						href="<%=application.getContextPath()%>/openUpdateEmployeePage/<%=employee.getEmpId()%>">Update</a></td>
+					<td>
+					<a href="<%=application.getContextPath()%>/showTasks/<%=employee.getUserName()%>">Tasks</a>
 					</td>
-
-
 				</tr>
 				<%
-				}
+				serialNo++;}
 				%>
 
 				<!-- Table rows will be dynamically added here using JavaScript -->
@@ -162,5 +163,16 @@ nav, main, footer {
 		%>
 
 	</p>
+	
+	<script>
+function confirmDeleteEmployee(empId) {
+    
+        var confirmDelete = confirm("Are you sure you want to delete this Employee?");
+        if (confirmDelete) {
+            window.location.href = "<%= application.getContextPath() %>/associate/delete/"+empId;
+        }
+    }
+
+</script>
 </body>
 </html>

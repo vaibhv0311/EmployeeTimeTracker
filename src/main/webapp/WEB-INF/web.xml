@@ -14,5 +14,8 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<session-config>
+    <session-timeout>30</session-timeout> <!-- Set the timeout value in minutes -->
+</session-config>
 
 </web-app>
