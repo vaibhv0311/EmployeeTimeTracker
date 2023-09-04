@@ -16,9 +16,9 @@
 	url('https://fonts.googleapis.com/css2?family=Arvo&family=Bungee+Spice&family=Fira+Sans:ital@1&family=Imperial+Script&family=Ubuntu:wght@500&display=swap')
 	;
 </style>
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 
@@ -38,7 +38,7 @@
 		</h4>
 	</div>
 	<h2>Add Your Task</h2>
-	<div class = "contaner">
+	<div class = "container">
 	<div class="add-project-form">
 		<form action="addtask" method="post">
 			<label for="name">Username:</label> <input type="text"

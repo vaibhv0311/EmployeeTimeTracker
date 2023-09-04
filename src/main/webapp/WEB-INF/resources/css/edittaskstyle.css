@@ -1,5 +1,5 @@
 @charset "ISO-8859-1";
-body {
+        body {
   font-family: Arial, sans-serif;
   background-image: url("download.jpg");
   background-size: cover;
@@ -15,7 +15,7 @@ body {
   padding-right: 35px;
   margin-top: 10px;
   margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.1); 
+  background-color: rgba(255, 255, 255); 
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* for tranparency */
 }
@@ -138,5 +138,3 @@ h1,h2 {
 .projects-list .project-item button {
   margin-left: 10px;
 }
-
-/* ... (other styles) */
