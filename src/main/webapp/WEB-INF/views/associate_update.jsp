@@ -139,8 +139,8 @@ nav a:hover {
 					value=<%=employee.getRole()%> required
 					placeholder="Enter role here" /><br /> <label for="projectTitle">Project
 					Title:</label> <input type="text" id="projectTitle" name="projectTitle"
-					value=<%=employee.getProjectTitle()%> required><br>
-				<br> <label for="description">Description:</label><br>
+					value=<%=employee.getProjectTitle()%> required><br> <br>
+				<label for="description">Description:</label><br>
 				<textarea id="description" name="description" rows="4" cols="50"
 					required placeholder="Add a description"></textarea>
 				<br> <br> <input type="submit" value="Submit">

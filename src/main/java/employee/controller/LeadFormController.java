@@ -41,7 +41,7 @@ public class LeadFormController {
 
 	@RequestMapping("/addprojectform")
 	public String gotoProjectForm() {
-		
+
 		return "addproject";
 	}
 
@@ -73,15 +73,14 @@ public class LeadFormController {
 				employee.setProjectTitle(projectTitle);
 				employee.setDescription(description);
 				int result = employeeDao.insertEmployee(employee);
-				if(result>0) {
-				model.addAttribute("success", "Employee Added Successfully");
-				return "04_leadview";
-			} else {
-				model.addAttribute("success", "Employee Addition failed");
-				return "04_leadview";
+				if (result > 0) {
+					model.addAttribute("success", "Employee Added Successfully");
+					return "04_leadview";
+				} else {
+					model.addAttribute("success", "Employee Addition failed");
+					return "04_leadview";
 				}
-			}
-				else {
+			} else {
 				model.addAttribute("error", "Please check the password!");
 				return "04_leadview";
 			}
@@ -103,10 +102,10 @@ public class LeadFormController {
 			project.setProjectDesc(pdescription);
 			project.setLeadName(leadname);
 			project.setDuration(duration);
-			System.out.println(project);
+	
 			int result = projectDao.insertProject(project);
-			if(result>0) {
-				
+			if (result > 0) {
+
 			}
 			return "04_leadview";
 		} catch (ForeignKeyException fke) {
@@ -119,7 +118,7 @@ public class LeadFormController {
 	@RequestMapping(value = { "/viewAssociateTable" })
 	public String viewEmployees(Model model) {
 		List<Employee> listOfEmployees = employeeDao.showData();
-		System.out.println(listOfEmployees);
+		
 
 		model.addAttribute("listOfEmployees", listOfEmployees);
 		return "associatetable";
@@ -129,7 +128,7 @@ public class LeadFormController {
 	@RequestMapping(value = { "/viewProjectTable" })
 	public String viewProjects(Model model) {
 		List<Project> listOfProjects = projectDao.showProject();
-		System.out.println(listOfProjects);
+
 
 		model.addAttribute("listOfProjects", listOfProjects);
 		return "projecttable";
@@ -140,7 +139,7 @@ public class LeadFormController {
 	public String openUpdateEmployeePage(@PathVariable("empId") int empId, Model model) {
 		Employee employeeToUpdate = employeeDao.getEmployee(empId);
 		model.addAttribute("employeeToUpdate", employeeToUpdate);
-		System.out.println(employeeToUpdate);
+
 		return "associate_update";
 	}
 
