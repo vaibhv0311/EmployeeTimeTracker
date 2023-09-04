@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <link rel="icon"
 	href="https://cdn-icons-png.flaticon.com/512/3063/3063792.png">
-<link rel="stylesheet" href="<c:url value="/resources/css/edittaskstyle.css"/>">
+
 <title>View Tasks</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>

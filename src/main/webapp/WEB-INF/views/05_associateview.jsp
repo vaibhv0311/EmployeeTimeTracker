@@ -34,6 +34,10 @@
 	if(message!=null){
 		out.print(message);
 	}
+	String result= (String)request.getAttribute("result");
+	if(result!=null){
+		out.print(result);
+	}
 %>
 	<div class="heading">
 		<h1>
