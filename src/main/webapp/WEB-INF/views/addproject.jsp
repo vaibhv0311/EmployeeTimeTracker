@@ -24,7 +24,15 @@ body {
 	/*background-image: url("download.jpg");*/
 	background-size: cover;
 }
-
+a {
+	text-decoration: none;
+	width: 200px;
+	background-color: dodgerBlue;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	margin-left: 10px;
+}
 nav, main, footer {
 	padding: 20px;
 }
@@ -115,12 +123,12 @@ nav a:hover {
 <body>
 
 	<header>
-		<a href="index" style="text-decoration: none;"><h1>EMPLOYEE
-				TIME TRACKER</h1></a>
+		<h1>EMPLOYEE
+				TIME TRACKER</h1>
 	</header>
 	<div class="heading">
-		<a href="leadview" style="text-decoration: none;"><h4>Back to
-				Dashboard</h4></a>
+		<h4><a href="leadview" style="text-decoration: none;">Back to
+				Dashboard</a></h4>
 	</div>
 	<div id="addProjectForm">
 		<form id="addprojectform" action="addproject" method="post">

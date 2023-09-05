@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,28 @@
 	href="https://cdn-icons-png.flaticon.com/512/3063/3063792.png">
 <title>Project List</title>
 <style>
-body, h1, h2, h3, p, ul, li {
+@import
+	url('https://fonts.googleapis.com/css2?family=Arvo&family=Bungee+Spice&family=Fira+Sans:ital@1&family=Imperial+Script&family=Ubuntu:wght@500&display=swap')
+	;
+	body, h1, h2, h3, p, ul, li {
 	margin: 0;
 	padding: 0;
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-family: 'Bungee Spice', cursive;
+}
+
+a {
+	text-decoration: none;
+	width: 200px;
+	background-color: dodgerBlue;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	margin-left: 10px;
 }
 
 /* Basic styling */
@@ -30,9 +50,11 @@ nav, main, footer {
 
 /* Style for the tabular form */
 .viewProjectTable {
-	width: 100%;
+	width: 90%;
 	border-collapse: collapse;
 	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .viewProjectTable th, .viewProjectTable td {
@@ -52,6 +74,7 @@ nav, main, footer {
 	margin: 20px 0;
 	font-size: 24px;
 }
+	
 </style>
 
 
@@ -63,13 +86,10 @@ List<Project>viewProjects=(List<Project>)request.getAttribute("listOfProjects");
 
 %>
 	<header>
-		<a href="index" style="text-decoration: none;"><h1>EMPLOYEE
-				TIME TRACKER</h1></a>
+		<h1>EMPLOYEE
+				TIME TRACKER</h1>
 	</header>
-	<div class="heading">
-		<a href="leadview" style="text-decoration: none;"><h4>Back to
-				Dashboard</h4></a>
-	</div>
+	
 	<header>
 		<div class="viewTableStyle">
 			<h1 class="heading">LIST OF PROJECTS</h1>
@@ -95,8 +115,7 @@ List<Project>viewProjects=(List<Project>)request.getAttribute("listOfProjects");
 					<td><%= project.getDuration() %></td>
 
 					<td><a
-						href="javascript:void(0);" onclick="confirmDeleteProject('<%= project.getProjectId() %>')">Delete</a></td>
-						<td><a
+						href="javascript:void(0);" onclick="confirmDeleteProject('<%= project.getProjectId() %>')">Delete</a><a
 						href="<%= application.getContextPath() %>/openUpdateProjectPage/<%= project.getProjectId()%>">Update</a>
 
 					</td>
@@ -106,6 +125,11 @@ List<Project>viewProjects=(List<Project>)request.getAttribute("listOfProjects");
 			</table>
 		</div>
 	</header>
+	
+	<div class="heading">
+		<h3><a href="leadview" style="text-decoration: none;">Back to
+				Dashboard</a></h3>
+	</div>
 	
 	<script>
 function confirmDeleteProject(projectId) {

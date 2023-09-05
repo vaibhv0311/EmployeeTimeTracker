@@ -18,19 +18,16 @@ public class EmployeeController {
 
 	@GetMapping(value = { "/" })
 	public String home() {
-		System.out.println("Hello World");
 		return "01_index";
 	}
 
 	@GetMapping("/leadlogin")
 	public String leadlogin() {
-		System.out.println("Entering the lead login page");
 		return "02_leadlogin";
 	}
 
 	@GetMapping("/associatelogin")
 	public String associatelogin() {
-		System.out.println("Entering the associate login page");
 		return "03_associatelogin";
 	}
 

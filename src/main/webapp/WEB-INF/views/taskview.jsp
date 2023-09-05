@@ -38,11 +38,24 @@ body {
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* for tranparency */
 }
 
-h1, h2 {
+h1, h2, h3 {
 	text-align: center;
 	margin: 0 0 20px;
 	color: white; /* Heading color */
 	font-family: "Bungee Spice", cursive;
+}
+button {
+	background-color: #ff6347;
+	color: #fff;
+	border: none;
+	padding: 10px 15px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 4px;
+}
+
+button.edit {
+	background-color: #3498db;
 }
 
 .projects-list table {
@@ -112,11 +125,10 @@ h1, h2 {
 </head>
 <body>
 	<h1>EMPLOYEE TIME TRACKER</h1>
-	<div class="container">
-		<a href="associateview" style="text-decoration: none;"><h3>Back
-				to dashboard</h3></a>
-
-	</div>
+	
+		<h3><a href="associateview" style="text-decoration: none;"><button class="edit">Back
+				to dashboard</button></a></h3>
+	
 
 	<%
 	List<Task> viewTasks = (List) request.getAttribute("getAllTasks");
@@ -161,9 +173,8 @@ h1, h2 {
 					<td><%=task.getEndTime()%></td>
 					<td><%=task.getStatus()%></td>
 					<td><a
-						href="<%=application.getContextPath()%>/task/delete/<%=task.getTaskId()%>">Delete</a></td>
-					<td><a
-						href="<%=application.getContextPath()%>/openUpdateTaskPage/<%=task.getTaskId()%>">Update</a>
+						href="<%=application.getContextPath()%>/task/delete/<%=task.getTaskId()%>"><button>Delete</button></a><a
+						href="<%=application.getContextPath()%>/openUpdateTaskPage/<%=task.getTaskId()%>"><button class="edit">Update</button></a>
 					</td>
 				</tr>
 				

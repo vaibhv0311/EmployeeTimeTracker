@@ -31,12 +31,7 @@
   %>
 
 	<h1>EMPLOYEE TIME TRACKER</h1>
-	<div class="container">
-		<h4>
-			<a href="associateview" style="text-decoration: none;">Back to
-				dashboard</a>
-		</h4>
-	</div>
+	
 	<h2>Add Your Task</h2>
 	<div class = "container">
 	<div class="add-project-form">
@@ -65,13 +60,17 @@
 			</select><br>
 			<button type="submit">Add Task</button>
 			<button type="reset">Clear Form</button>
-			<button type="button" onclick="tasktable">View Tasks</button>
+			<a href="tasktable" class="button" style="text-decoration: none;"><button type="button" onclick="tasktable">View Tasks</button></a>
 		</form>
 		<br>
+		<button>
 		
-		<button><a href="tasktable" class="button" style="text-decoration: none;">
-			View Tasks</a></button>
-	</div></div>
+			<a href="associateview" style="text-decoration: none;">Back to
+				dashboard</a>
+		
+	</button>
+		</div></div>
+		
 		
 	
 	<%

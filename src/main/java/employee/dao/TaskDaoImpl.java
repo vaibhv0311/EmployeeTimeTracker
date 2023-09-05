@@ -47,7 +47,7 @@ public class TaskDaoImpl implements TaskDao {
 		String getTaskQuery = "SELECT * FROM tasks WHERE empUserName=?";
 		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(getTaskQuery, username);
 		List<Task> taskList = new ArrayList<>();
-		System.out.println(username);
+
 		for (Map<String, Object> row : rows) {
 			Task task = new Task();
 			task.setTaskId((int) row.get("tid"));

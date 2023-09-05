@@ -10,9 +10,18 @@
 	href="https://cdn-icons-png.flaticon.com/512/3063/3063792.png">
 <title>Associate List</title>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Arvo&family=Bungee+Spice&family=Fira+Sans:ital@1&family=Imperial+Script&family=Ubuntu:wght@500&display=swap')
+	;
 body, h1, h2, h3, p, ul, li {
 	margin: 0;
 	padding: 0;
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-family: 'Bungee Spice', cursive;
 }
 
 a {
@@ -37,19 +46,19 @@ nav, main, footer {
 	padding: 20px;
 }
 /* Style for the tabular form */
-.viewTraineeTable {
+.viewAssociateTable {
 	display: true; /* Hide the table initially */
 	/* width: 100%; */
 	border-collapse: collapse;
 	margin-top: 20px;
 }
 
-.viewTraineeTable th, .viewTraineeTable td {
+.viewAssociateTable th, .viewAssociateTable td {
 	border: 1px solid #ddd;
 	padding: 8px;
 }
 
-.viewTraineeTable th {
+.viewAssociateTable th {
 	background-color: #17e9ec;
 	font-weight: bold;
 	width: 20rem;
@@ -61,9 +70,11 @@ nav, main, footer {
 /*------------for associate table showing all employees----------*/
 /* Style for the tabular form */
 .viewAssociateTable {
-	width: 100%;
+	width: 90%;
 	border-collapse: collapse;
 	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .viewAssociateTable th, .viewAssociateTable td {
@@ -97,16 +108,10 @@ nav, main, footer {
 	%>
 	<header>
 		<h1>
-			<a href="index" style="text-decoration: none;">EMPLOYEE TIME
-				TRACKER</a>
+			EMPLOYEE TIME TRACKER
 		</h1>
 	</header>
-	<div class="heading">
-		<h4>
-			<a href="leadview" style="text-decoration: none;">Back to
-				Dashboard</a>
-		</h4>
-	</div>
+	
 	<header>
 
 		<div class="viewTableStyle">
@@ -122,7 +127,7 @@ nav, main, footer {
 					<th>Project Title</th>
 					<th>Description</th>
 					<th>Actions</th>
-					<th></th>
+						
 					<th>Tasks</th>
 				</tr>
 				<%
@@ -139,8 +144,7 @@ nav, main, footer {
 					<td><%=employee.getProjectTitle()%></td>
 					<td><%=employee.getDescription()%></td>
 					<td>
-					<a href="javascript:void(0);" onclick="confirmDeleteEmployee('<%= employee.getEmpId() %>')">Delete</a></td>
-						<td><a
+					<a href="javascript:void(0);" onclick="confirmDeleteEmployee('<%= employee.getEmpId() %>')">Delete</a><a
 						href="<%=application.getContextPath()%>/openUpdateEmployeePage/<%=employee.getEmpId()%>">Update</a></td>
 					<td>
 					<a href="<%=application.getContextPath()%>/showTasks/<%=employee.getUserName()%>">Tasks</a>
@@ -163,6 +167,12 @@ nav, main, footer {
 		%>
 
 	</p>
+	<div class="heading">
+		<h4>
+			<a href="leadview" style="text-decoration: none;">Back to
+				Dashboard</a>
+		</h4>
+	</div>
 	
 	<script>
 function confirmDeleteEmployee(empId) {

@@ -8,9 +8,7 @@
 <link rel="icon"
 	href="https://cdn-icons-png.flaticon.com/512/3063/3063792.png">
 <style>
-<
-style
->
+
 @import
 	url('https://fonts.googleapis.com/css2?family=Arvo&family=Bungee+Spice&family=Fira+Sans:ital@1&family=Imperial+Script&family=Ubuntu:wght@500&display=swap')
 	;
@@ -18,6 +16,22 @@ style
 body, h1, h2, h3, p, ul, li {
 	margin: 0;
 	padding: 0;
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-family: 'Bungee Spice', cursive;
+}
+
+a {
+	text-decoration: none;
+	width: 200px;
+	background-color: dodgerBlue;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	margin-left: 10px;
 }
 
 /* Basic styling */
@@ -116,12 +130,12 @@ nav a:hover {
 <body>
 
 	<header>
-		<a href="index" style="text-decoration: none;"><h1>EMPLOYEE
-				TIME TRACKER</h1></a>
+		<h1>EMPLOYEE
+				TIME TRACKER</h1>
 	</header>
 	<div class="heading">
-		<a href="leadview" style="text-decoration: none;"><h4>Back to
-				Dashboard</h4></a>
+		<h4><a href="leadview" style="text-decoration: none;">Back to
+				Dashboard</a></h4>
 	</div>
 	<div id="addTraineeForm">
 		<form id="addtraineeform" action="addassociateform" method="post">
@@ -155,7 +169,7 @@ nav a:hover {
 			<br>
 			<br>
 
-			<button type="submit">Add Trainee</button>
+			<button type="submit">Add Associate</button>
 
 			<% String success = (String)request.getAttribute("success");
                if(success!=null){
